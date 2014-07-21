@@ -1,0 +1,19 @@
+name: My Cool Tool
+short_name: cool-tool
+icon_16: gmt/gmt_icon_16.png
+icon_48: gmt/gmt_icon_48.png
+biostars_tag: cool-tool
+
+menu:
+  - text: Overview
+    href: gmt/index.md
+  - text: Installation
+    href: gmt/install.md
+
+additional_downloads:
+  - text: Walkthrough
+    href: http://example.com/downloads/walkthroughUpdated.pdf
+
+doc_downloads:
+  - text: API Documentation
+    href: http://example.com/api

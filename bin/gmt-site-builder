@@ -1,0 +1,20 @@
+#! /usr/bin/env ruby
+
+require 'gmt-site-builder'
+
+options = GMTSiteOptParser.parse(ARGV)
+
+GMTSiteBuilder.configure do |config|
+  config.jekyll_repo_directory = options.jekyll_repo_directory
+  config.github_organization_name = options.organization_name
+end
+
+Octokit.configure do |config|
+  config.access_token = options.github_oauth_token
+end
+
+validation_result = ValidateRepos.execute!(options.repos_to_validate)
+puts ValidationResultFormatter.new(validation_result).to_s
+exit 0 if options.validate_only
+puts 'Skipping Invalid Repos...'
+BuildSite.execute!(validation_result.valid_repos)

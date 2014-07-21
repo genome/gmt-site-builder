@@ -1,0 +1,41 @@
+---
+name: <%= config.name %>
+short_name: <%= short_name %>
+github_url: <%= path %>
+biostars_tag: <%= config.biostars_tag %>
+icon_16: res/images/<%= config.icon_16.file_name %>
+icon_48: res/images/<%= config.icon_48.file_name %>
+<% if install_file = config.menu.select { |menu| menu.title =~ /install/i }.first %>
+download_link: <%= install_file.file_name %>
+<% end %>
+
+menu:
+  <% config.menu.each do |menu_item| %>
+  - text: <%= menu_item.title %>
+    href: <%= menu_item.file_name %>
+  <% end %>
+
+<% if has_releases? %>
+short_version: <%= releases.first.version %>
+versions:
+  <% releases.each do |release| %>
+  - text: <%= release.version %>
+    href: <%= release.path %>
+  <% end %>
+<% end %>
+
+<% if config.additional_downloads %>
+additional_downloads:
+  <% config.additional_downloads.each do |download| %>
+  - text: <%= download['text'] %>
+    href: <%= download['href'] %>
+  <% end %>
+<% end %>
+
+<% if config.doc_downloads %>
+doc_downloads:
+  <% config.doc_downloads.each do |download| %>
+  - text: <%= download['text'] %>
+    href: <%= download['href'] %>
+  <% end %>
+<% end %>
