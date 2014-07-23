@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('octokit', '~> 2.0')
   s.add_runtime_dependency('kramdown', '~> 1.4')
   s.add_runtime_dependency('jekyll', '~> 2.1')
+  s.add_runtime_dependency('therubyracer', '~> 0.12')
 end
