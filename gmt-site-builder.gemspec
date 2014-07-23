@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version       = GMTSiteBuilder::VERSION
   s.date          = '2014-05-01'
   s.summary       = "Build tool for generating the Genome Model Tools site"
-  s.description   = "Build tool for generating the Genome Model Tools site"
+  s.description   = "Build tool for generating the Genome Model Tools site from data stored on Github"
   s.authors       = ["Adam Coffman", "Joshua McMichael"]
   s.email         = 'acoffman@genome.wustl.edu'
   s.files         = `git ls-files`.split("\n")
@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('octokit', '~> 2.0')
   s.add_runtime_dependency('kramdown', '~> 1.4')
-  s.add_runtime_dependency('jekyll', '~> 2.1.1')
+  s.add_runtime_dependency('jekyll', '~> 2.1')
 end
