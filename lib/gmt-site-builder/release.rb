@@ -17,7 +17,7 @@ class Release
   end
 
   def body
-    Kramdown::Document.new(@github_release.body).to_html
+    @body ||= Kramdown::Document.new(@github_release.body).to_html
   end
 
   def path
