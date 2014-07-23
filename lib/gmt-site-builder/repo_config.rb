@@ -1,6 +1,7 @@
 class RepoConfig
   attr_reader :errors
   attr_reader :menu
+  attr_reader :resources
 
   GMTFileFields.required_string_fields.each do |field|
     attr_accessor field.to_sym
@@ -18,6 +19,7 @@ class RepoConfig
     @repo = repo
     @errors = []
     @menu = []
+    @resources = []
     config_data = YAML.load(raw_repo_config)
     process_config(config_data)
   end
@@ -31,6 +33,7 @@ class RepoConfig
     process_string_fields(config)
     process_icon_fields(config)
     process_menu(config)
+    process_resources(config)
     process_additional_fields(config)
     if config.any?
       @errors << "Extra keys specified: #{config.keys.join(',')}"
@@ -79,6 +82,17 @@ class RepoConfig
       end
     else
       @errors << 'No value given for required field "menu"'
+    end
+  end
+
+  def process_resources(config)
+    config_resources = config.delete(GMTFileFields.resource_field) || []
+    config_resources.each do |resource|
+      begin
+        @resources << Resource.new(@repo, resource, short_name)
+      rescue Octokit::NotFound
+        @errors << "Resource not found at #{value}"
+      end
     end
   end
 
