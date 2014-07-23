@@ -9,6 +9,7 @@ class ToolExporter
     write_config_file
     write_icons
     write_menu
+    write_resources
     write_release_posts
   end
 
@@ -32,6 +33,12 @@ class ToolExporter
   def write_menu
     @tool_repo.config.menu.each do |menu_item|
       menu_item.save!(@jekyll_site)
+    end
+  end
+
+  def write_resources
+    @tool_repo.config.resources.each do |resource|
+      resource.save!(@jekyll_site)
     end
   end
 

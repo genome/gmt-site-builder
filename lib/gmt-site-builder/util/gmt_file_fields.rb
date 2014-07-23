@@ -24,4 +24,8 @@ module GMTFileFields
       'doc_downloads',
     ]
   end
+
+  def self.resource_field
+    'resources'
+  end
 end
