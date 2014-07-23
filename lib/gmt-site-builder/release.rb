@@ -25,7 +25,7 @@ class Release
   end
 
   def date
-    @github_release.published_at.strftime("%Y-%m-%d")
+    @github_release.commit_date.strftime("%Y-%m-%d")
   end
 
   def file_name
