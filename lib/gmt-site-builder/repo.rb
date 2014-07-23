@@ -13,7 +13,7 @@ class Repo
   end
 
   def short_name
-    @config.short_name
+    config.short_name
   end
 
   def is_gmt?
@@ -25,12 +25,12 @@ class Repo
   end
 
   def valid?
-    @errors.none? && @config.valid?
+    errors.none? && config.valid?
   end
 
   def errors
-    if @config.respond_to?(:errors)
-      @config.errors + @errors
+    if config.respond_to?(:errors)
+      config.errors + @errors
     else
       @errors
     end
@@ -50,7 +50,7 @@ class Repo
 
   private
   def get_releases
-    GithubApi.get_releases_for_repo(@github_repo).map { |r| Release.new(r, @config.short_name) }
+    GithubApi.get_releases_for_repo(@github_repo).map { |r| Release.new(r, config.short_name) }
   end
 
   def get_repo_config
