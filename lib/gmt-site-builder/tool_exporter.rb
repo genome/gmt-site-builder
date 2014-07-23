@@ -37,7 +37,7 @@ class ToolExporter
 
   def write_release_posts
     @tool_repo.releases.each do |release|
-      release.save!(@jekyll_site)
+      release.save!(@jekyll_site) unless release.body.strip.empty?
     end
   end
 end
