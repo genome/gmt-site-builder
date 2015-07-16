@@ -50,7 +50,9 @@ class Repo
 
   private
   def get_releases
-    GithubApi.get_releases_for_repo(@github_repo).map { |r| Release.new(r, config.short_name) }
+    GithubApi.get_releases_for_repo(@github_repo)
+      .map { |r| Release.new(r, config.short_name) }
+      .select { |r| r.published? }
   end
 
   def get_repo_config

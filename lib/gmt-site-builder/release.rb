@@ -32,6 +32,10 @@ class Release
     "#{date}-#{tool_name}_#{version}_released.html"
   end
 
+  def published?
+    !@github_release.draft?
+  end
+
   private
   def template_name
     'release_post'
